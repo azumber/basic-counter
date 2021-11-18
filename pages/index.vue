@@ -1,7 +1,11 @@
 <template>
-  <Tutorial/>
+  <div>
+    <Counter/>
+  </div>
 </template>
 
 <script>
-export default {}
+
+export default {
+}
 </script>
