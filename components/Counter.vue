@@ -2,8 +2,8 @@
     <div class="container w-72 h-72 shadow-2xl rounded place-self-center">
         <h1 class="text-6xl m-8 justify-center place-self-center">{{ count }}</h1>
         <div class="flex space-x-4 justify-center">
-            <button @click="increase" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">INCREASE</button>
-            <button @click="decrease" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" >DECREASE</button>
+            <button id="inc" @click="increase" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">INCREASE</button>
+            <button id="dec" @click="decrease" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" >DECREASE</button>
         </div>
     </div>
 </template>
