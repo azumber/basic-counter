@@ -8,22 +8,23 @@ describe('Counter', () => {
   })
 })
 
-it('button click should increment the count text', async () => {
+it('Is it began with 0 ?', async () => {
   const value = 0
-  const wrapper = mount(Counter,{
-    props: {
-      count: value
-    }
-  })
-  const inc = value + 1
-  const dec = value - 1
+  const wrapper = mount(Counter)
+  expect(wrapper.vm.count).toEqual(0)
+})
 
-  const display = wrapper.find('h1')
+it('Is it increasing correctly ?', async () => {
+  const wrapper = mount(Counter)
   const button = wrapper.find('#inc')
   await button.trigger('click')
-  expect(display.text()).toContain(inc.toString())
-
-  const buttonDec = wrapper.find('#dec')
-  await buttonDec.trigger('click')
-  expect(display.text()).toContain(dec.toString())
+  expect(wrapper.vm.count).toEqual(1)
 })
+
+it('Is it decreasing correctly ?', async () => {
+  const wrapper = mount(Counter)
+  const button = wrapper.find('#dec')
+  await button.trigger('click')
+  expect(wrapper.vm.count).toEqual(-1)
+})
+
