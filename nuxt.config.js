@@ -1,3 +1,4 @@
+ENV_VARIABLES()
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -26,6 +27,10 @@ export default {
   css: [
   ],
 
+  env: {
+    apiBaseURL: process.env.API_URL
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
@@ -46,4 +51,8 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
+}
+
+function ENV_VARIABLES(){
+  require('dotenv').config({path: './.environment/local'})
 }

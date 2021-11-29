@@ -1,26 +1,21 @@
-
-//const assert = require('assert')
-const { Publisher, Pact, Matchers } = require('@pact-foundation/pact')
+import axios from 'axios'
+import path from 'path'
+import { Publisher, Pact, Matchers } from '@pact-foundation/pact'
 const { eachLike } = Matchers 
-let value = 0
+import {getCounter} from './src/Request.js'
 
-/*
-const options = {
-  pactFilesOrDirs: "./pacts",
-  pactBroker: "https://zumber.pactflow.io/",
-  pactBrokerToken: "IEd_kFIFjFD1o3vOoxX3PA",
-  pactBrokerUsername: "zumber",
-  pactBrokerPassword: "asd123",
-  consumerVersion: "1.0.0",
-  publishVerificationResult: true
-}
-*/
+let value = 0
 
 describe('Pact with Counter API', () => {
   const provider = new Pact({
-    port: 8080,
+    port: 4040,
     consumer: 'consumer-test',
     provider: 'provider-test',
+    log: path.resolve(process.cwd(), 'logs', 'pact.log'),
+    dir: path.resolve(process.cwd(), 'pacts'),
+    spec: 2,
+    cors: true,
+    pactfileWriteMode: 'overwrite' // Options: overwrite, update, merge
   })
 
   before(() => provider.setup())
@@ -43,12 +38,13 @@ describe('Pact with Counter API', () => {
         },
       })
     })
+    // request 
+    it('get counter is ok', async () => {
+      axios.defaults.baseURL = provider.mockService.baseUrl
+      await getCounter()
+    })
   })
-  /*
-  it('get counter is ok', async () => {
-    const result = await getCounter()
-    assert.ok(result.length)
-  })
-  */
+
+  
 
 })

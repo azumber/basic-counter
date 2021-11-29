@@ -8,13 +8,15 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "jest",
-    "test:consumer": "mocha ./test/Consumer.spec.js",
-    "pact:publish": "pact-broker publish ./pacts --consumer-app-version=\"$(npx @pact-foundation/absolute-version)\" --broker-base-url=https://zumber.pactflow.io --broker-token=IEd_kFIFjFD1o3vOoxX3PA"
+    "test:consumer": "mocha ./Consumer.spec.js",
+    "pact:publish": "pact-broker publish ./pacts --consumer-app-version=\"$(npx @pact-foundation/absolute-version)\" --broker-base-url=https://zumber.pactflow.io --broker-token=AhT3yO3pFlB6lZpWskVDcA"
   },
   "dependencies": {
     "@pact-foundation/pact": "^9.17.0",
     "@rplan/pact-broker-cli": "^0.1.2",
+    "axios": "^0.24.0",
     "core-js": "^3.15.1",
+    "dotenv": "^10.0.0",
     "nuxt": "^2.15.7",
     "taiko": "^1.2.7"
   },
@@ -27,5 +29,6 @@
     "mocha": "^8.4.0",
     "postcss": "^8.3.5",
     "vue-jest": "^3.0.4"
-  }
+  },
+  "type": "module"
 }

@@ -1,0 +1,41 @@
+{
+  "consumer": {
+    "name": "consumer-test"
+  },
+  "provider": {
+    "name": "provider-test"
+  },
+  "interactions": [
+    {
+      "description": "a request for display counter",
+      "providerState": "this is counter",
+      "request": {
+        "method": "GET",
+        "path": "/display"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": [
+          {
+            "counter": 0
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 1
+          },
+          "$.body[*].*": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
