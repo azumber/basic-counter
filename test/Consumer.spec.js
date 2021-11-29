@@ -1,8 +1,20 @@
 
 //const assert = require('assert')
-const { Pact, Matchers } = require('@pact-foundation/pact')
+const { Publisher, Pact, Matchers } = require('@pact-foundation/pact')
 const { eachLike } = Matchers 
 let value = 0
+
+/*
+const options = {
+  pactFilesOrDirs: "./pacts",
+  pactBroker: "https://zumber.pactflow.io/",
+  pactBrokerToken: "IEd_kFIFjFD1o3vOoxX3PA",
+  pactBrokerUsername: "zumber",
+  pactBrokerPassword: "asd123",
+  consumerVersion: "1.0.0",
+  publishVerificationResult: true
+}
+*/
 
 describe('Pact with Counter API', () => {
   const provider = new Pact({
