@@ -27,14 +27,16 @@ describe('Pact with Counter API', () => {
         state: 'this is counter',
         uponReceiving: 'a request for display counter',
         withRequest: {
+          headers: { Accept: "application/json" },
           path: '/display',
           method: 'GET',
         },
         willRespondWith: {
+          headers: { "Content-Type": "application/json" },
+          status: 200, 
           body: eachLike({
             counter: value
           }),
-          status: 200,
         },
       })
     })
