@@ -2,7 +2,7 @@ import axios from 'axios'
 import path from 'path'
 import { Publisher, Pact, Matchers } from '@pact-foundation/pact'
 const { eachLike } = Matchers 
-import {getCounter} from './src/Request.js'
+import {counterDecrease, counterIncrease, getCounter} from './src/Request.js'
 
 let value = 0
 
@@ -21,6 +21,7 @@ describe('Pact with Counter API', () => {
   before(() => provider.setup())
   after(() => provider.finalize())
 
+  // display
   describe('when a call to the API is made', () => {
     before(async () => {
       return provider.addInteraction({
@@ -47,6 +48,59 @@ describe('Pact with Counter API', () => {
     })
   })
 
-  
+  // increase
+  describe('when a call to the API is made', () => {
+    before(async () => {
+      return provider.addInteraction({
+        state: 'this is increased counter',
+        uponReceiving: 'a request for increase counter',
+        withRequest: {
+          headers: { Accept: "application/json" },
+          path: '/increase',
+          method: 'GET',
+        },
+        willRespondWith: {
+          headers: { "Content-Type": "application/json" },
+          status: 200, 
+          body: eachLike({
+            counter: ++value
+          }),
+        },
+      })
+    })
+    // request 
+    it('increase is ok', async () => {
+      axios.defaults.baseURL = provider.mockService.baseUrl
+      await counterIncrease()
+    })
+  })
+
+    // decrease
+    describe('when a call to the API is made', () => {
+      before(async () => {
+        return provider.addInteraction({
+          state: 'this is decreased counter',
+          uponReceiving: 'a request for decrease counter',
+          withRequest: {
+            headers: { Accept: "application/json" },
+            path: '/decrease',
+            method: 'GET',
+          },
+          willRespondWith: {
+            headers: { "Content-Type": "application/json" },
+            status: 200, 
+            body: eachLike({
+              counter: --value
+            }),
+          },
+        })
+      })
+      // request 
+      it('decrease is ok', async () => {
+        axios.defaults.baseURL = provider.mockService.baseUrl
+        await counterDecrease()
+      })
+    })
+
 
 })

@@ -11,11 +11,75 @@
       "providerState": "this is counter",
       "request": {
         "method": "GET",
-        "path": "/display"
+        "path": "/display",
+        "headers": {
+          "Accept": "application/json"
+        }
       },
       "response": {
         "status": 200,
         "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "counter": 0
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 1
+          },
+          "$.body[*].*": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request for increase counter",
+      "providerState": "this is increased counter",
+      "request": {
+        "method": "GET",
+        "path": "/increase",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "counter": 1
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 1
+          },
+          "$.body[*].*": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request for decrease counter",
+      "providerState": "this is decreased counter",
+      "request": {
+        "method": "GET",
+        "path": "/decrease",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
         },
         "body": [
           {
