@@ -1,8 +1,9 @@
 import axios from 'axios'
 import path from 'path'
 import { Publisher, Pact, Matchers } from '@pact-foundation/pact'
-const { eachLike } = Matchers 
+const { eachLike, like } = Matchers 
 import {counterDecrease, counterIncrease, getCounter} from './src/Request.js'
+
 
 let value = 0
 
@@ -35,7 +36,7 @@ describe('Pact with Counter API', () => {
         willRespondWith: {
           headers: { "Content-Type": "application/json" },
           status: 200, 
-          body: eachLike({
+          body: like({
             counter: value
           }),
         },
@@ -62,7 +63,7 @@ describe('Pact with Counter API', () => {
         willRespondWith: {
           headers: { "Content-Type": "application/json" },
           status: 200, 
-          body: eachLike({
+          body: like({
             counter: ++value
           }),
         },
@@ -89,7 +90,7 @@ describe('Pact with Counter API', () => {
           willRespondWith: {
             headers: { "Content-Type": "application/json" },
             status: 200, 
-            body: eachLike({
+            body: like({
               counter: --value
             }),
           },

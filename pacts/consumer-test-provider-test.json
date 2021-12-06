@@ -21,16 +21,11 @@
         "headers": {
           "Content-Type": "application/json"
         },
-        "body": [
-          {
-            "counter": 0
-          }
-        ],
+        "body": {
+          "counter": 0
+        },
         "matchingRules": {
           "$.body": {
-            "min": 1
-          },
-          "$.body[*].*": {
             "match": "type"
           }
         }
@@ -51,16 +46,11 @@
         "headers": {
           "Content-Type": "application/json"
         },
-        "body": [
-          {
-            "counter": 1
-          }
-        ],
+        "body": {
+          "counter": 1
+        },
         "matchingRules": {
           "$.body": {
-            "min": 1
-          },
-          "$.body[*].*": {
             "match": "type"
           }
         }
@@ -81,16 +71,11 @@
         "headers": {
           "Content-Type": "application/json"
         },
-        "body": [
-          {
-            "counter": 0
-          }
-        ],
+        "body": {
+          "counter": 0
+        },
         "matchingRules": {
           "$.body": {
-            "min": 1
-          },
-          "$.body[*].*": {
             "match": "type"
           }
         }
